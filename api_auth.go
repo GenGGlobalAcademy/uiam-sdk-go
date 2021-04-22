@@ -61,7 +61,7 @@ func (ir IdentityRequest) GenMfaPhoneCode(ctx context.Context, authReq *PhoneCod
 // VerifyMfaPhoneCode VerifyMfaPhoneCode
 func (ir IdentityRequest) VerifyMfaPhoneCode(ctx context.Context, authReq *PhoneCodeVerifyRequest) (bool, error) {
 	var isVerified bool
-	if err := Execute(ir.getRequest(ctx), "POST", fmt.Sprintf("%s%s", ir.ServerURL, "/v1/mfa/phone/verify"), authReq, isVerified); err != nil {
+	if err := Execute(ir.getRequest(ctx), "POST", fmt.Sprintf("%s%s", ir.ServerURL, "/v1/mfa/phone/verify"), authReq, &isVerified); err != nil {
 		return false, err
 	}
 
