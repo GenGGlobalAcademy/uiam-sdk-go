@@ -4,6 +4,7 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+	"net/url"
 	"strings"
 )
 
@@ -65,7 +66,7 @@ func (ir IdentityRequest) GetUsersByIdentityIDs(ctx context.Context, identityIDs
 func (ir IdentityRequest) GetUserByPhone(ctx context.Context, phoneCode, phoneNumber string) (*User, error) {
 	var resp BasePageResponse
 
-	url := fmt.Sprintf("%s/v1/identities?phone_code=%s&phone_number=%s&limit=1", ir.ServerURL, phoneCode, phoneNumber)
+	url := fmt.Sprintf("%s/v1/identities?phone_code=%s&phone_number=%s&limit=1", ir.ServerURL, url.QueryEscape(phoneCode), phoneNumber)
 
 	if err := Execute(ir.getRequest(ctx), "GET", url, nil, &resp); err != nil {
 		return nil, err
