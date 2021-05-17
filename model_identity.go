@@ -16,6 +16,7 @@ type User struct {
 	Status      string      `mapstructure:"status" json:"status"`
 	CreatedAt   time.Time   `mapstructure:"created_at" json:"created_at"`
 	AvatarURL   string      `mapstructure:"avatar_url" json:"avatar_url"`
+	HubspotContactId string	`mapstructure:"hubspot_contact_id" json:"hubspot_contact_id"`
 }
 
 // Profile profile
